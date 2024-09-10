@@ -1,3 +1,29 @@
 body {
-    background-color: rgb(217, 217, 155);
+    background-color: beige;
+    font-family:'Courier New', Courier, monospace;
+    cursor: crosshair;
+    height: 100vh;
+}
+
+::selection {
+    background-color: greenyellow;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    font-size: 1em;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    columns: 3;
+    column-width: 256px;
+    column-gap: 10px;
+}
+
+ul a {
+    font-size: 18px;
+    color: inherit;
+    text-decoration-style: dotted;
 }
