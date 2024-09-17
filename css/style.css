@@ -17,13 +17,36 @@ h1, h2, h3, h4, h5, h6 {
 ul {
     list-style-type: none;
     padding-left: 0;
-    columns: 3;
+    /* columns: 3;
     column-width: 256px;
-    column-gap: 10px;
+    column-gap: 10px; */
+}
+
+ul li {
+    text-align: center;
+    margin-bottom: 0.5em;
 }
 
 ul a {
-    font-size: 18px;
+    font-size: 10vw;
     color: inherit;
-    text-decoration-style: dotted;
+    /* text-decoration-style: dotted; */
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+    background-color: white;
+    border-radius: 20vw;
+    transition: 0.5s ease all;
+}
+
+ul a:hover {
+    background-color: rgb(146, 219, 90);
+    transition: 0.5s ease all;
+    outline: .075em #000 dotted;
+    outline-offset: -.1em;
+    letter-spacing: 0.1em;
+}
+
+small {
+    padding-bottom: 1em;
 }
