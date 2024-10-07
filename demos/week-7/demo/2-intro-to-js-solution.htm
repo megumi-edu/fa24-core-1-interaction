@@ -4,18 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>[STARTER] Intro to Javascript</title>
-        <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>" type="image/x-icon">
+        <title>[ANSWER KEY] Intro to Javascript</title>
+        <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌲</text></svg>" type="image/x-icon">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Instrument+Serif&display=swap" rel="stylesheet">
         <style type="text/css">
-            @font-face {
-                font-family: "Instrument Serif";
-                src: url(fonts/InstrumentSerif-Regular.ttf);
-                font-weight: 400;
-            }
-
             @font-face {
                 font-family: "Standard";
                 src: url(fonts/standard-book-webfont.woff2);
@@ -133,7 +127,8 @@
     <body>
         <main>
             <h1>In-class Exercise: Intro to Javascript</h1>
-            <p>Let’s learn Javascript basics! Save this file on your class portal website.</p>
+            <p>This is the answer key. Go back to the <a href="1-intro-to-js-starter.htm">starter page</a></p>
+            <p>Let’s learn Javascript basics! Save this file on your class portal website by downloading <a href="https://github.com/megumi-edu/fa24-core-1-interaction/tree/main/demos/week-7" target="_blank">here</a>.</p>
             <h2>Browser Setup</h2>
             <ol>
                 <li>Open Developer Tools and click "Console".<br>
@@ -213,9 +208,28 @@
                 </li>
             </ol>
             <h2>All done!</h2>
-            <p>Compare your answers to the <a href="https://github.com/megumi-edu/fa24-core-1-interaction/blob/main/demos/week-7/intro-to-js-answers.htm" target="_blank">answer key</a> to make sure you understand everything!</p>
+            <p>Compare your answers to the <a href="https://github.com/megumi-edu/fa24-core-1-interaction/blob/main/demos/week-7/demo/2-intro-to-js-solution.htm" target="_blank">answer key</a> to make sure you understand everything!</p>
             <p>For additional work with external libraries, I suggest adding Google Analytics to your class portal website.</p>
         </main>
+        <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+        <script type="text/javascript">
+            let name = "Megumi";
+            console.log(name);
+            let firstHeading = document.querySelector("h1");
+            console.log(firstHeading);
+            firstHeading.style.color = "#36612e";
+            firstHeading.classList.add("underline");
+            firstHeading.textContent = name + "’s Javascript Worksheet";
+            let button = document.querySelector("button");
+            button.addEventListener("click", function () {
+                console.log("Button clicked!");
+                let hiddenMessage = document.querySelector(".hidden");
+                hiddenMessage.classList.add("show");
+            });
+            window.addEventListener("load", (event) => {
+                new cursoreffects.ghostCursor();
+            });
+        </script>
     </body>
 
 </html>

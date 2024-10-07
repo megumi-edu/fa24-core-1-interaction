@@ -2,6 +2,8 @@
 
 ## Instructions
 
-1. Start by clicking on the `intro-to-js-starter.htm` file
-2. Copy all the HTML and create a new file in your VSCode class portal workspace
-3. When you're finished, upload this file to your Github website and submit the URL in Canvas
+1. Start by clicking on the `week-7-worksheet.zip` file
+2. Download by clicking the download icon in the top right of the Github file viewer
+3. Unzip and move this folder to your VSCode class portal workspace
+4. Complete the questions in `1-intro-to-js-starter.htm`
+5. When you're finished, upload to your Github website and submit the URL in Canvas
