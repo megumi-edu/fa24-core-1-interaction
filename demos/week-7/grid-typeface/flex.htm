@@ -8,6 +8,7 @@
 
         body {
             background-color: antiquewhite;
+            margin: 0;
         }
 .container {
     display: flex;
@@ -15,20 +16,28 @@
     width: 100vw;
     place-content: center;
     place-items: center;
+    column-gap: 2em;
 }
 
 .letter {
-    width: 200px;
-    height: 400px;
+    width: 20vw;
+    height: 20vw;
     background-color: transparent;
     display: grid;
-    grid-template-columns: repeat(12, 1em);
-    grid-template-rows: repeat(12, 1em);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
 }
 
 .fill {
     background-color: blue;
-    border-radius: 7px;
+    border-radius: .8vw;
+    transition: 2s ease all;
+}
+
+.fill:hover {
+    opacity: 0.5;
+    border-radius: 0;
+    transition: 0.3s ease all;
 }
 
 .blank {
