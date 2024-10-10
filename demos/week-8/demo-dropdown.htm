@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Demo: Sliders</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Instrument+Serif&display=swap" rel="stylesheet">
+        <style type="text/css">
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                margin: 0;
+                padding: 0;
+                font-family: "DM Sans", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            main {
+                display: grid;
+                grid-template-rows: auto 1fr;
+                align-items: start;
+            }
+
+            h1 {
+                font-family: "Instrument Serif", serif;
+                font-weight: 400;
+            }
+
+            .controls {
+                box-shadow: 0px 3px 5px 0px #cccccc;
+                padding: 1em 3em 3em 3em;
+            }
+
+            input[type="range"] {
+                accent-color: #000000;
+            }
+
+            .dropdown {
+                margin-bottom: .5em;
+            }
+
+            .slider {
+                margin-bottom: 0.25em;
+            }
+
+            #widthValue,
+            #heightValue {
+                color: #999999;
+            }
+
+            .rectangle {
+                margin-left: 3em;
+                margin-top: 3em;
+                width: 200px;
+                height: 200px;
+                background-color: #000000;
+                transition: all 0.3s ease;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <div class="controls">
+                <h1>Rectangle Controls</h1>
+                <p>Select an option to edit the rectangle.</p>
+                <div class="dropdown">
+                    <label for="colorSelect">Color:</label>
+                    <select id="colorSelect">
+                        <option value="#000000" selected>Black</option>
+                        <option value="lightblue">Light Blue</option>
+                        <option value="lightgreen">Light Green</option>
+                        <option value="lightcoral">Light Coral</option>
+                        <option value="lightgray">Light Gray</option>
+                    </select>
+                </div>
+
+                <div class="slider">
+                    <label for="widthRange">Width:</label>
+                    <input type="range" id="widthRange" min="50" max="500" value="200" step="50">
+                    <span id="widthValue">200px</span>
+                </div>
+
+                <div class="slider">
+                    <label for="heightRange">Height:</label>
+                    <input type="range" id="heightRange" min="50" max="500" value="200">
+                    <span id="heightValue">200px</span>
+                </div>
+            </div>
+            <div class="rectangle"></div>
+        </main>
+        <script type="text/javascript">
+            let rectangle = document.querySelector('.rectangle');
+            let colorSelect = document.getElementById('colorSelect');
+            let widthRange = document.getElementById('widthRange');
+            let heightRange = document.getElementById('heightRange');
+            let widthValue = document.getElementById('widthValue');
+            let heightValue = document.getElementById('heightValue');
+
+            // Update rectangle background color and box-shadow
+            colorSelect.addEventListener('change', function () {
+                let selectedColor = this.value;
+                rectangle.style.backgroundColor = selectedColor;
+            });
+
+            // Update rectangle width
+            widthRange.addEventListener('input', function () {
+                let width = this.value;
+                widthValue.textContent = `${width}px`;
+                rectangle.style.width = `${width}px`;
+            });
+
+            // Update rectangle height
+            heightRange.addEventListener('input', function () {
+                let height = this.value;
+                heightValue.textContent = `${height}px`;
+                rectangle.style.height = `${height}px`;
+            });
+
+        </script>
+    </body>
+
+</html>
