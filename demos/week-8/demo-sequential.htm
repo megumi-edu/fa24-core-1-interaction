@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Demo: Random</title>
+        <style type="text/css">
+            body {
+                background-color: #FF33A8;
+                color: white;
+                margin: 0;
+            }
+
+            main {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                place-content: center;
+                align-items: center;
+            }
+
+            .symbols {
+                font-size: 120px;
+                user-select: none;
+                touch-action: none;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <div class="symbols"><span class="symbol-1">✹</span>✺❊</div>
+        </main>
+        <script type="text/javascript">
+            // let body = document.querySelector("body");
+            // let bgColor = ["blue", "green", "black", "white"];
+            // console.log(bgColor);
+            // window.addEventListener("load", (event) => {
+            //     body.style.backgroundColor = "green";
+            // });
+            let colors = ["#FF5733", "#33FF57", "#3357FF", "#F3FF33", "#FF33A8"];
+            let colorIndex = 0;
+            console.log(colorIndex);
+
+            document.body.addEventListener('click', () => {
+                document.body.style.backgroundColor = colors[colorIndex];
+                colorIndex = (colorIndex + 1) % colors.length; // Loop through colors
+                console.log(colorIndex);
+            });
+        </script>
+    </body>
+
+</html>
