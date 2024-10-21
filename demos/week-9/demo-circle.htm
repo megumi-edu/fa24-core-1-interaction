@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Demo: Circle</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Instrument+Serif&display=swap" rel="stylesheet" />
+		<style type="text/css">
+			:root {
+				--line-height: 1px;
+				--line-color: #000000;
+			}
+
+			body {
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				margin: 0;
+				padding: 80px;
+				font-family: "DM Sans", sans-serif;
+				font-optical-sizing: auto;
+				font-weight: 400;
+				font-style: normal;
+				min-height: 100vh;
+				background-color: #f3f4f8;
+				color: #979797;
+			}
+
+			main {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 60px;
+			}
+
+			.controls {
+				/* background-color: #ffffff; */
+			}
+
+			h1 {
+				font-family: "Instrument Serif", serif;
+				font-weight: 400;
+				letter-spacing: -.02em;
+				margin: 0;
+				color: #000000;
+			}
+
+
+			input[type="range"] {
+				accent-color: #595959;
+			}
+
+			.controls {
+				display: grid;
+				gap: 1em;
+			}
+
+			.slider {
+				margin-bottom: 0.25em;
+			}
+
+			.logo-container {
+				grid-column-start: 2;
+				grid-row-start: 2;
+				margin-top: 60px;
+			}
+
+			.color-picker {
+				display: flex;
+				gap: 1em;
+			}
+
+			#colorSwatches {
+				display: flex;
+				gap: 5px;
+			}
+
+			.color-swatch {
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				cursor: pointer;
+			}
+
+			.logo-container {
+				position: relative;
+				width: 300px;
+				height: 300px;
+				display: grid;
+				align-items: center;
+				justify-items: center;
+			}
+
+			.circle {
+				background-color: #ffffff;
+				border-radius: 50%;
+				width: 300px;
+				height: 300px;
+				display: grid;
+				align-items: center;
+				clip-path: circle();
+			}
+
+			.inner-circle {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				background-color: #ffffff;
+			}
+
+			.word {
+				position: absolute;
+				color: #000000;
+				font-size: 106px;
+				letter-spacing: -.03em;
+			}
+
+			.line {
+				width: 100%;
+				height: var(--line-height);
+				background-color: var(--line-color);
+			}
+		</style>
+	</head>
+
+	<body>
+		<main>
+			<div class="description">
+				<h1>Circle Logo Generator</h1>
+
+			</div>
+
+			<div class="controls">
+				<div class="color-picker">
+					<span>Line color:</span>
+					<div id="colorSwatches">
+						<div class="color-swatch" style="background-color: #000000"></div>
+						<div class="color-swatch" style="background-color: #208d02"></div>
+						<div class="color-swatch" style="background-color: #5fb4e8"></div>
+						<div class="color-swatch" style="background-color: #f3600b"></div>
+						<div class="color-swatch" style="background-color: #ff69c6"></div>
+						<div class="color-swatch" style="background-color: #fff291"></div>
+
+					</div>
+				</div>
+				<div class="slider">
+					<label for="lineSlider">Number of lines:</label>
+					<input type="range" id="lineSlider" min="1" max="55" value="10" step="1" />
+					<span id="lineLabel">10</span>
+				</div>
+				<div class="slider">
+					<label for="heightSlider">Height of lines:</label>
+					<input type="range" id="heightSlider" min="1" max="25" value="1" step="1" />
+					<span id="heightLabel">1px</span>
+				</div>
+			</div>
+
+			<div class="logo-container">
+				<div class="circle"></div>
+				<!-- <div class="inner-circle"></div> -->
+				<div class="word">Circle</div>
+
+			</div>
+
+		</main>
+		<script type="text/javascript">
+			let circle = document.querySelector(".circle");
+			let lineSlider = document.querySelector("#lineSlider");
+			let lineLabel = document.querySelector("#lineLabel");
+			let heightSlider = document.querySelector("#heightSlider");
+			let heightLabel = document.querySelector("#heightLabel");
+
+			// Create lines with default slider value
+			circle.innerHTML = '';
+			for (let step = 0; step < lineSlider.value; step++) {
+				// Runs 5 times, with values of step 0 through 4.
+				circle.innerHTML += '<div class="line"></div>';
+			}
+
+			// Update slider line count
+			lineSlider.addEventListener("input", function () {
+				lineLabel.textContent = this.value;
+				circle.innerHTML = '';
+				for (let step = 0; step < this.value; step++) {
+					// Runs 5 times, with values of step 0 through 4.
+					circle.innerHTML += '<div class="line"></div>';
+				}
+			});
+
+			// Update slider line height
+			heightSlider.addEventListener("input", function () {
+				let lineHeight = this.value + "px";
+				heightLabel.textContent = lineHeight;
+				document.documentElement.style.setProperty('--line-height', lineHeight);
+			});
+
+			// Select all color swatches
+			let colorSwatches = document.querySelectorAll(".color-swatch");
+
+			// Add click event listener to each swatch
+			colorSwatches.forEach(swatch => {
+				swatch.addEventListener("click", function () {
+					// Get the background-color value of the clicked swatch
+					let lineColor = this.style.backgroundColor;
+
+					// Set the --main-color CSS variable in :root
+					document.documentElement.style.setProperty('--line-color', lineColor);
+				});
+			});
+
+
+			// Update rectangle background color
+			// colorSelect.addEventListener("change", function () {
+			// 	let newLines = document.querySelectorAll(".line");
+			// 	for (let line of newLines) {
+			// 		line.style.backgroundColor = this.value;
+			// 	}
+			// });
+
+		</script>
+	</body>
+
+</html>
