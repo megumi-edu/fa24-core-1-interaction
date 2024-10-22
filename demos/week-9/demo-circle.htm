@@ -172,9 +172,8 @@
 			let heightLabel = document.querySelector("#heightLabel");
 
 			// Create lines with default slider value
-			circle.innerHTML = '';
-			for (let step = 0; step < lineSlider.value; step++) {
-				// Runs 5 times, with values of step 0 through 4.
+			// circle.innerHTML = '';
+			for (let i = 0; i < lineSlider.value; i++) {
 				circle.innerHTML += '<div class="line"></div>';
 			}
 
