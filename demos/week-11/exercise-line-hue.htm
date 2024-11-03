@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Demo: Line Generator</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Instrument+Serif&display=swap" rel="stylesheet" />
+		<style type="text/css">
+			body {
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				margin: 0;
+				padding: 0;
+				font-family: "DM Sans", sans-serif;
+				font-optical-sizing: auto;
+				font-weight: 400;
+				font-style: normal;
+				background-color: #000000;
+				color: #ffffff;
+				opacity: 0;
+				animation: fade-in 500ms;
+				animation-delay: 400ms;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in-out;
+				transition: opacity 0.5s ease-in-out;
+			}
+
+			@keyframes fade-in {
+				0% {
+					opacity: 0;
+				}
+
+				100% {
+					opacity: 1;
+				}
+			}
+
+			main {
+				display: grid;
+				grid-template-rows: auto 1fr;
+				align-items: start;
+			}
+
+			h1 {
+				font-family: "Instrument Serif", serif;
+				font-weight: 400;
+				font-size: 74px;
+				letter-spacing: -.02em;
+				margin-bottom: 30px;
+				line-height: .9;
+			}
+
+			.controls {
+				/* box-shadow: 0px 3px 5px 0px #cccccc; */
+				padding: 1em 3em 3em 3em;
+			}
+
+			#starContainer {
+				position: relative;
+				margin: 50px auto;
+				min-height: 400px;
+				width: 100%;
+				margin: 50px auto;
+			}
+
+			.line {
+				position: absolute;
+				width: 6px;
+				height: 200px;
+				background-color: #333;
+				top: 0;
+				left: 50%;
+				transform-origin: bottom center;
+				opacity: 0;
+				/* Fade-in starting point */
+				transition: opacity 0.5s ease-in-out;
+				/* Smooth transition */
+			}
+
+			.fade-in {
+				animation: fade-in 500ms;
+				animation-delay: 400ms;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in-out;
+				/* Target opacity for lines fade-in */
+			}
+
+			/* Style for number of lines label */
+			label {
+				font-size: 26px;
+				letter-spacing: -.03em;
+				margin-right: 10px;
+				display: block;
+			}
+
+			/* Style for the input field */
+			#lineInput {
+				border: none;
+				border-bottom: 1px solid #929292;
+				font-family: inherit;
+				font-size: 26px;
+				padding: 2px;
+				outline: none;
+				background: transparent;
+				color: inherit;
+				font-weight: bold;
+				letter-spacing: -.01em;
+				appearance: textfield;
+			}
+
+			/* Style for the button */
+			#applyButton {
+				background-color: #fff;
+				border: 0;
+				font-family: inherit;
+				font-size: 13px;
+				padding: 7px 16px;
+				cursor: pointer;
+				box-shadow: none;
+				margin-left: 5px;
+				font-weight: bold;
+				text-transform: uppercase;
+				letter-spacing: .03em;
+			}
+
+			#applyButton:focus {
+				outline: none;
+				/* Remove blue outline on focus */
+			}
+
+			/* Keep the spinners visible when interacting */
+			/* #lineInput::-webkit-inner-spin-button,
+			#lineInput::-webkit-outer-spin-button {
+				opacity: 1;
+			} */
+
+			.controls p {
+				opacity: .4;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<main>
+			<div class="controls">
+				<h1>Demo: Line Generator</h1>
+				<div>
+					<label for="lineInput">Number of Lines</label>
+					<input type="number" id="lineInput" min="8" max="60" value="30">
+					<button id="applyButton">Apply</button>
+					<p>Type a number between 8 and 60.</p>
+
+				</div>
+
+			</div>
+			<div id="starContainer"></div>
+		</main>
+		<script type="text/javascript">
+			const lineInput = document.querySelector('#lineInput');
+			const applyButton = document.querySelector('#applyButton');
+			const starContainer = document.querySelector('#starContainer');
+
+			// Function to create lines with rainbow colors and rotate them evenly with fade-in effect
+			function createStarburst(numLines) {
+				// Clear previous lines
+				starContainer.innerHTML = '';
+
+				// Calculate angle increment and hue increment
+				const angleIncrement = 360 / numLines;
+				const hueIncrement = 360 / numLines; // Rainbow colors based on the number of lines
+
+				// Create each line with the appropriate rotation and color
+				for (let i = 0; i < numLines; i++) {
+					const line = document.createElement('div');
+					line.classList.add('line');
+					line.style.transform = `rotate(${i * angleIncrement}deg)`;
+
+					// Set the color using HSL
+					const hue = i * hueIncrement; // Calculate hue for each line
+					line.style.backgroundColor = `hsl(${hue}, 100%, 50%)`; // Bright and vibrant colors
+
+					starContainer.appendChild(line);
+
+					// Trigger the fade-in effect after a slight delay
+					setTimeout(() => {
+						line.classList.add('fade-in');
+					}, i * 50); // Small stagger effect for each line
+				}
+			}
+
+			// Event listener to apply number of lines when button is clicked
+			applyButton.addEventListener('click', () => {
+				const numLines = parseInt(lineInput.value, 10);
+				// Don't change 10 - this means base 10 aka decimal number format
+				if (numLines >= 8 && numLines <= 60) {
+					createStarburst(numLines);
+				} else {
+					alert("Please enter a number between 8 and 60.");
+				}
+			});
+
+			// Initialize with default number of lines
+			createStarburst(parseInt(lineInput.value, 10));
+			// Don't change 10 - this means base 10 aka decimal number format
+
+		</script>
+	</body>
+
+</html>
