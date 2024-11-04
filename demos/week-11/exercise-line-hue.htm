@@ -19,7 +19,7 @@
 				font-weight: 400;
 				font-style: normal;
 				background-color: #000000;
-				color: #ffffff;
+				color: #bbbbbb;
 			}
 
 			@keyframes fade-in {
@@ -40,6 +40,7 @@
 
 			h1 {
 				font-family: "Instrument Serif", serif;
+				color: #ffffff;
 				font-weight: 400;
 				font-size: 74px;
 				letter-spacing: -.02em;
@@ -103,14 +104,16 @@
 
 			/* Style for the input field */
 			#lineInput {
+				width: 250px;
+				display: block;
 				border: none;
 				border-bottom: 1px solid #929292;
+				color: #FFFFFF;
 				font-family: inherit;
 				font-size: 26px;
 				padding: 2px;
 				outline: none;
 				background: transparent;
-				color: inherit;
 				font-weight: bold;
 				letter-spacing: -.01em;
 				appearance: textfield;
@@ -123,14 +126,18 @@
 
 			/* Style for the button */
 			#applyButton {
-				background-color: #fff;
-				border: 0;
+				width: 250px;
+				height: 40px;
+				border-radius: 50px;
+				margin-top: 10px;
+				border: 1px solid #fff;
+				color: #fff;
+				background-color: #000;
 				font-family: inherit;
 				font-size: 13px;
 				padding: 7px 16px;
 				cursor: pointer;
 				box-shadow: none;
-				margin-left: 5px;
 				font-weight: bold;
 				text-transform: uppercase;
 				letter-spacing: .03em;
@@ -139,21 +146,26 @@
 				animation-delay: 1200ms;
 				animation-fill-mode: forwards;
 				animation-timing-function: ease-in-out;
+				transition: 0.3s all ease-in-out;
+			}
+
+			#applyButton:hover {
+				background-color: #fff;
+				color: #000;
+				transition: 0.3s all ease-in-out;
 			}
 
 			#applyButton:focus {
 				outline: none;
-				/* Remove blue outline on focus */
 			}
 
-			/* Keep the spinners visible when interacting */
-			/* #lineInput::-webkit-inner-spin-button,
+			/* Keep the input arrows visible at all times */
+			#lineInput::-webkit-inner-spin-button,
 			#lineInput::-webkit-outer-spin-button {
 				opacity: 1;
-			} */
+			}
 
 			.controls p {
-				opacity: .4;
 				margin-top: 20px;
 				opacity: 0;
 				animation: fade-in 800ms;
