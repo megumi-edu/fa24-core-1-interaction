@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Demo: Line Generator</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Instrument+Serif&display=swap" rel="stylesheet" />
-		<style type="text/css">
-		         body {
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Demo: Line Generator</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Instrument+Serif&display=swap" rel="stylesheet" />
+        <style type="text/css">
+            body {
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
                 margin: 0;
@@ -168,75 +168,69 @@
                     opacity: 1;
                 }
             }
+        </style>
+    </head>
 
-		</style>
-	</head>
+    <body>
+        <main>
+            <div class="controls">
+                <h1>Demo: Line Generator</h1>
+                <div>
+                    <label for="lineInput">Number of Lines</label>
+                    <input type="number" id="lineInput" min="8" max="60" value="30">
+                    <button id="applyButton">Apply</button>
+                    <p>Type a number between 8 and 60.</p>
 
-	<body>
-		<main>
-			<div class="controls">
-				<h1>Demo: Line Generator</h1>
-				<div>
-					<label for="lineInput">Number of Lines</label>
-					<input type="number" id="lineInput" min="8" max="60" value="30">
-					<button id="applyButton">Apply</button>
-					<p>Type a number between 8 and 60.</p>
+                </div>
 
-				</div>
-
-			</div>
-			<div id="starContainer"></div>
-		</main>
-		<script type="text/javascript">
-			const lineInput = document.querySelector('#lineInput');
-			const applyButton = document.querySelector('#applyButton');
-			const starContainer = document.querySelector('#starContainer');
+            </div>
+            <div id="starContainer"></div>
+        </main>
+        <script type="text/javascript">
+            const lineInput = document.querySelector('#lineInput');
+            const applyButton = document.querySelector('#applyButton');
+            const starContainer = document.querySelector('#starContainer');
 
 
-			// Function to create lines with rainbow colors and rotate them evenly with fade-in effect
-			function createStarburst(numLines) {
-				// Clear previous lines
-				starContainer.innerHTML = '';
+            // Function to create lines with rainbow colors and rotate them evenly with fade-in effect
+            function createStarburst(numLines) {
+                // Clear previous lines
+                starContainer.innerHTML = '';
 
-				// Calculate angle increment and hue increment
-				const angleIncrement = 360 / numLines;
-				const hueIncrement = 360 / numLines; // Rainbow colors based on the number of lines
+                // Calculate angle increment and hue increment
+                const angleIncrement = 360 / numLines;
 
-				// Create each line with the appropriate rotation and color
-				for (let i = 0; i < numLines; i++) {
-					const line = document.createElement('div');
-					line.classList.add('line');
-					line.style.transform = `rotate(${i * angleIncrement}deg)`;
+                // Create each line with the appropriate rotation and color
+                for (let i = 0; i < numLines; i++) {
+                    const line = document.createElement('div');
+                    line.classList.add('line');
+                    line.style.transform = `rotate(${i * angleIncrement}deg)`;
 
-					// Set the color using HSL
-					const hue = i * hueIncrement; // Calculate hue for each line
-					line.style.backgroundColor = `hsl(${hue}, 100%, 50%)`; // Bright and vibrant colors
+                    starContainer.appendChild(line);
 
-					starContainer.appendChild(line);
+                    // Trigger the fade-in effect after a slight delay
+                    setTimeout(() => {
+                        line.classList.add('fade-in');
+                    }, i * 50); // Small stagger effect for each line
+                }
+            }
 
-					// Trigger the fade-in effect after a slight delay
-					setTimeout(() => {
-						line.classList.add('fade-in');
-					}, i * 50); // Small stagger effect for each line
-				}
-			}
+            // Event listener to apply number of lines when button is clicked
+            applyButton.addEventListener('click', () => {
+                const numLines = parseInt(lineInput.value, 10);
+                // Don't change 10 - this means base 10 aka decimal number format
+                if (numLines >= 8 && numLines <= 60) {
+                    createStarburst(numLines);
+                } else {
+                    alert("Please enter a number between 8 and 60.");
+                }
+            });
 
-			// Event listener to apply number of lines when button is clicked
-			applyButton.addEventListener('click', () => {
-				const numLines = parseInt(lineInput.value, 10);
-				// Don't change 10 - this means base 10 aka decimal number format
-				if (numLines >= 8 && numLines <= 60) {
-					createStarburst(numLines);
-				} else {
-					alert("Please enter a number between 8 and 60.");
-				}
-			});
+            // Initialize with default number of lines
+            createStarburst(parseInt(lineInput.value, 10));
+            // Don't change 10 - this means base 10 aka decimal number format
 
-			// Initialize with default number of lines
-			createStarburst(parseInt(lineInput.value, 10));
-			// Don't change 10 - this means base 10 aka decimal number format
-
-		</script>
-	</body>
+        </script>
+    </body>
 
 </html>
