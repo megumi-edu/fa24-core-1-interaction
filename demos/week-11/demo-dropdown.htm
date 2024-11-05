@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Demo: Sliders</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Instrument+Serif&display=swap"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Instrument+Serif&display=swap" rel="stylesheet" />
 		<style type="text/css">
 			body {
 				-webkit-font-smoothing: antialiased;
@@ -69,7 +67,7 @@
 	<body>
 		<main>
 			<div class="controls">
-				<h1>Rectangle Controls</h1>
+				<h1>Study Example: Rectangle Controls</h1>
 				<p>Select an option to edit the rectangle.</p>
 				<div class="dropdown">
 					<label for="colorSelect">Color:</label>
@@ -82,18 +80,11 @@
 					</select>
 				</div>
 
-                <!-- Add shape dropdown and make the colors select radio buttons -->
+				<!-- Add shape dropdown and make the colors select radio buttons -->
 
 				<div class="slider">
 					<label for="widthSlider">Width:</label>
-					<input
-						type="range"
-						id="widthSlider"
-						min="50"
-						max="500"
-						value="200"
-						step="50"
-					/>
+					<input type="range" id="widthSlider" min="50" max="500" value="200" step="50" />
 					<span id="widthLabel">200px</span>
 				</div>
 
@@ -108,10 +99,10 @@
 		<script type="text/javascript">
 			let rectangle = document.querySelector(".rectangle");
 			let colorSelect = document.getElementById("colorSelect");
-            // Select slider elements
+			// Select slider elements
 			let widthSlider = document.getElementById("widthSlider");
 			let heightSlider = document.getElementById("heightSlider");
-            // Select text label elements
+			// Select text label elements
 			let widthLabel = document.getElementById("widthLabel");
 			let heightLabel = document.getElementById("heightLabel");
 
@@ -133,4 +124,5 @@
 			});
 		</script>
 	</body>
+
 </html>

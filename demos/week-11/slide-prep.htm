@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        <input type="number" id="lines" min="10" max="100">
+
+
+        <input type="text" id="name" placeholder="Your Name">
+
+        <input type="checkbox" id="coding" name="interest" value="coding">
+        <label for="coding">Coding</label>
+        <input type="checkbox" id="music" name="interest" value="music">
+        <label for="music">Music</label>
+
+
+        <select name="pets" id="pet-select">
+            <option value="">Dropdown</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="hamster">Hamster</option>
+            <option value="parrot">Parrot</option>
+            <option value="spider">Spider</option>
+            <option value="goldfish">Goldfish</option>
+        </select>
+
+
+        <input type="radio" id="contactChoice1" name="contact" value="email">
+        <label for="contactChoice1">Email</label>
+
+        <input type="radio" id="contactChoice2" name="contact" value="phone">
+        <label for="contactChoice2">Phone</label>
+
+        <input type="radio" id="contactChoice3" name="contact" value="mail">
+        <label for="contactChoice3">Mail</label>
+
+
+        <input type="range" id="slider" min="1" max="10">
+        <script>
+
+            const slider = document.getElementById('sliderId');
+            const sliderValue = Number(slider.value);
+
+
+
+            const dropdown = document.getElementById('pet-select');
+            const selectedValue = dropdown.value;
+
+
+            const selectedRadio = document.querySelector('input[name="contact"]:checked');
+            const radioValue = selectedRadio ? selectedRadio.value : null;
+
+
+            const checkbox = document.getElementById('music');
+            const isChecked = checkbox.checked;
+
+
+            const numberInput = document.getElementById('lines');
+            const numberValue = parseFloat(numberInput.value);
+
+
+            const textField = document.getElementById('name');
+            const textValue = textField.value;
+
+
+            setTimeout(() => {
+                line.classList.add('fade-in');
+            }, 800);
+
+
+        </script>
+
+
+    </body>
+
+</html>
