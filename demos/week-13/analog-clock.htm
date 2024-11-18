@@ -3,25 +3,26 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Is it Christmas?</title>
+		<title>Analog Clock</title>
 		<link
 			rel="icon"
-			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕰️</text></svg>"
+			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕐</text></svg>"
 		/>
   <style>
     .clock {
       width: 300px;
       height: 300px;
-      border: 10px solid #333;
+      border: 10px solid #171717;
       border-radius: 50%;
       position: relative;
       margin: 50px auto;
+      background: #111111;
     }
 
     .center-point {
       width: 12px;
       height: 12px;
-      background: #333;
+      background: #161616;
       border-radius: 50%;
       position: absolute;
       top: 50%;
@@ -35,33 +36,34 @@
       bottom: 50%;
       left: 50%;
       transform-origin: bottom;
-      border-radius: 4px;
+      border-radius: 1px;
     }
 
     .hour {
-      width: 8px;
-      height: 25%;
-      background: #333;
+      width: 6px;
+      height: 35%;
+      background: linear-gradient(to bottom, white 0%, white 45% ,black 45% ,black 100%);
       transform: translateX(-50%);
     }
 
     .minute {
-      width: 6px;
-      height: 35%;
-      background: #666;
+      width: 4px;
+      height: 40%;
+      background: linear-gradient(to bottom, white 0%, white 65% ,black 65% ,black 100%);
       transform: translateX(-50%);
+      border-radius: 1px;
     }
 
     .second {
       width: 2px;
-      height: 40%;
-      background: #f00;
+      height: 47%;
+      background: linear-gradient(to bottom, #ffde00 0%, #ffde00 25% ,black 25% ,black 100%);
       transform: translateX(-50%);
     }
 
     /* Clock markers */
     .marker {
-      width: 2px;
+      width: 1px;
       height: 100%;
       position: absolute;
       left: 50%;
@@ -71,17 +73,16 @@
     .marker::after {
       content: '';
       position: absolute;
-      width: 6px;
-      height: 2px;
-      background: #333;
-      top: 6px;
-      left: -2px;
+      width: 1px;
+      height: 10px;
+      background: white;
+      top: 0;
+      left: 0;
     }
 
     .marker.quarter::after {
-      width: 12px;
-      height: 4px;
-      left: -5px;
+      width: 2px;
+      height: 12px;
     }
   </style>
 </head>
@@ -100,11 +101,12 @@
     const clock = document.querySelector('.clock');
 
     // Add clock markers
-    for (let i = 0; i < 12; i++) {
+    let totalMarkers = 60;
+    for (let i = 0; i < totalMarkers; i++) {
       const marker = document.createElement('div');
       marker.className = 'marker';
-      if (i % 3 === 0) marker.classList.add('quarter');
-      marker.style.transform = `rotate(${i * 30}deg)`;
+      if (i % 15 === 0) marker.classList.add('quarter');
+      marker.style.transform = `rotate(${i * 360 / totalMarkers}deg)`;
       clock.appendChild(marker);
     }
 
