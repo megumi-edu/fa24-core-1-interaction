@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Is it Christmas?</title>
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎄</text></svg>"
+		/>
+		<style>
+			* {
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			body {
+				background-color: #ffffff;
+				min-height: 100vh;
+				margin: 0;
+				display: grid;
+				place-content: center;
+				align-items: center;
+				text-align: center;
+				font-family: Helvetica, sans-serif;
+				font-weight: bold;
+				letter-spacing: -0.03em;
+			}
+
+			h1 {
+				font-size: clamp(24px, 6vw, 38px);
+				margin: 0;
+			}
+
+			#countdown {
+				font-size: clamp(24px, 6vw, 54px);
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Time til Christmas</h1>
+		<div id="countdown"></div>
+		<script>
+			// Specify your target date here, will display in user's local time zone
+			const startOfChristmas = new Date("2024-12-25T00:00:00").getTime(); // Start of Christmas Day
+			const endOfChristmas = new Date("2024-12-25T23:59:59").getTime(); // End of Christmas Day
+			const countdownText = document.getElementById("countdown");
+
+			function updateCountdown() {
+				let now = new Date().getTime();
+
+				// Test out different current dates by un-commenting below
+				// now = new Date("2024-12-23T00:00:00").getTime();
+
+				if (now >= startOfChristmas && now <= endOfChristmas) {
+					// On Christmas Day
+					countdownText.innerText = "It's Christmas!";
+					document.querySelector("h1").style.display = "none";
+				} else if (now > endOfChristmas) {
+					// After Christmas Day
+					countdownText.innerText = "Christmas has passed.";
+					document.querySelector("h1").style.display = "none";
+				} else {
+					// Before Christmas Day
+					const distance = startOfChristmas - now;
+
+					// Calculate days, hours, minutes, and seconds
+					const days = Math.floor(distance / (1000 * 60 * 60 * 24)); // 1 day = 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+					const hours = Math.floor(
+						(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+					); // Remaining hours after days
+					const minutes = Math.floor(
+						(distance % (1000 * 60 * 60)) / (1000 * 60)
+					); // Remaining minutes after hours
+					const seconds = Math.floor((distance % (1000 * 60)) / 1000); // Remaining seconds after minutes
+
+					countdownText.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+				}
+			}
+
+			// Update every second
+			setInterval(updateCountdown, 1000);
+
+			// Initialize immediately when page loads
+			updateCountdown();
+		</script>
+	</body>
+</html>

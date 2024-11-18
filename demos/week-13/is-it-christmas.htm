@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Is it Christmas?</title>
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎄</text></svg>"
+		/>
+		<style>
+			* {
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			body {
+				background-color: #ffffff;
+				min-height: 100vh;
+				margin: 0;
+				display: flex;
+				place-content: center;
+				align-items: center;
+				font-family: Helvetica, sans-serif;
+				font-size: 126px;
+				font-weight: bold;
+				letter-spacing: -0.03em;
+			}
+
+			.no {
+				color: #cb0000;
+			}
+
+			.yes {
+				color: #008458;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="text"></div>
+		<script>
+			const resultText = document.getElementById("text");
+
+			function isItChristmas() {
+				const today = new Date();
+				let month = today.getMonth(); // 11 for December
+				let day = today.getDate(); // 25 for Christmas
+
+				// Temporary troubleshooting - un-comment to write specific data for testing
+				// month = 11;
+				// day = 25;
+
+				if (month === 11 && day === 25) {
+					resultText.textContent = "YES";
+					resultText.className = "yes";
+				} else {
+					resultText.textContent = "NO";
+					resultText.className = "no";
+				}
+			}
+
+			// Update when page loads
+			isItChristmas();
+			// Check every day (86400000 milliseconds = 24 hours)
+			setInterval(isItChristmas, 86400000);
+		</script>
+	</body>
+</html>
