@@ -86,8 +86,8 @@
 				let seconds = date.getSeconds();
 
 				// Temporary troubleshooting - un-comment to write specific data for testing
-				// hours = 12;
-				// minutes = 14;
+				hours = 1;
+				minutes = 12;
 				// seconds = 33;
 
 				if (hours >= 5 && hours < 12) {
@@ -142,6 +142,11 @@
 				minuteText.textContent = minutes;
 				secondText.textContent = seconds;
 				ampmText.textContent = ampm;
+
+				console.log(hours);
+				console.log(minutes);
+				console.log(seconds);
+				console.log(messageText);
 			}
 
 			// Update clock immediately and then every second
